@@ -41,7 +41,7 @@ def vid_summary(transcript: List[Dict]):
     """, ResponseType.TEXT)
 
 ## Translation 
-def translate(word: str, context: str, src_lang: str, target_lang: str):
+def translate_word(word: str, context: str, src_lang: str, target_lang: str):
     return gemini(f"""
     You are a professional translator with fluent knowledge in {src_lang}. You also have extensive knowledge of {src_lang} culture.
 

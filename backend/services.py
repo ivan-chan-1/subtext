@@ -20,7 +20,10 @@ client = genai.Client()
 def gemini(prompt: str, res_type: ResponseType):
     res = client.models.generate_content(model=MODEL, contents=prompt, config={"response_mime_type": res_type.value})
     
-    return json.loads(res.text)
+    if ResponseType.JSON == res_type.value:
+        return json.loads(res.text)
+    else:
+        return res.text
 
 ## Video Processing
 def vid_to_text(vid_id: str, src_lang: List[str]):

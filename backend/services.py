@@ -1,38 +1,44 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 from google import genai
 from dotenv import load_dotenv
+from enum import Enum
+from typing import List, Dict
 
 import json
 
 load_dotenv()
 
 MODEL = "gemini-2.5-flash-lite"
+class ResponseType(Enum):
+    TEXT = "text/plain"
+    JSON = "application/json"
+
 yt = YouTubeTranscriptApi()
 client = genai.Client()
 
 ## AI
-def gemini(prompt):
-    res = client.models.generate_content(model=MODEL, contents=prompt, config={"response_mime_type": "application/json"})
+def gemini(prompt: str, res_type: ResponseType):
+    res = client.models.generate_content(model=MODEL, contents=prompt, config={"response_mime_type": res_type.value})
     
     return json.loads(res.text)
 
 ## Video Processing
-def vid_to_text(vid_id, src_lang):
+def vid_to_text(vid_id: str, src_lang: List[str]):
     transcript = yt.fetch(vid_id, languages=src_lang)
 
     return transcript.to_raw_data()
 
-def vid_summary(transcript):
+def vid_summary(transcript: List[Dict]):
     compiled = " ".join([x["text"] for x in transcript])
 
     return gemini(f"""
     You are a professional notetaker. Summarise the following transcript into a one sentence high-level summary under 20 words that captures its core concepts."
 
     The transcript you to summarise is {compiled}.
-    """)
+    """, ResponseType.TEXT)
 
 ## Translation 
-def translate(word, context, src_lang, target_lang):
+def translate(word: str, context: str, src_lang: str, target_lang: str):
     return gemini(f"""
     You are a professional translator with fluent knowledge in {src_lang}. You also have extensive knowledge of {src_lang} culture.
 
@@ -44,16 +50,16 @@ def translate(word, context, src_lang, target_lang):
     Format your results into a JSON object following the below example. Note the array is sorted by relevance:
 
     {{
-        definitions: [{{
+        "definitions": [{{
             meaning: "",
             pos: "",
             romanisation: "",
             example: ""
         }}]
-        cultural: ""
+        "cultural": ""
     }}
 
     If an error occurs, return an empty JSON object.
 
     The word to translate is {word}.
-    """)
+    """, ResponseType.JSON)

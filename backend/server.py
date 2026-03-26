@@ -1,5 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 from google import genai
+import json
 
 yt = YouTubeTranscriptApi()
 
@@ -7,7 +8,7 @@ def vid_to_text(vid_id, src_lang):
     transcript = yt.fetch(vid_id, languages=src_lang)
     return transcript.to_raw_data()
 
-def create_prompt(word, context, src_lang, target_lang):
+def translate_prompt(word, context, src_lang, target_lang):
     return f"""
     You are a professional translator with fluent knowledge in {src_lang}. You also have extensive knowledge of {src_lang} culture.
 
@@ -33,7 +34,7 @@ def create_prompt(word, context, src_lang, target_lang):
     The word to translate is {word}.
     """
 
-def translate(word, src_lang):
+def gemini(prompt):
     client = genai.Client()
-    prompt = word
     res = client.models.generate_content(model="gemini-2.5-flash-lite", contents=prompt)
+    return json.loads(res.text)

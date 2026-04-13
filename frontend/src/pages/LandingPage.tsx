@@ -4,7 +4,11 @@ import Page from "../components/Page";
 const LandingPage = () => {
   return (
     <Page>
-      <ConvertBar />
+      <div className="w-full flex justify-center items-center">
+        <div>
+          <ConvertBar />
+        </div>
+      </div>
     </Page>
   )
 }

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import LineCard from "../components/LineCard"
 import Page from "../components/Page"
 
@@ -15,6 +16,8 @@ const TEST_TRANSCRIPT = [
 ]
 
 const TranscriptPage = () => {
+  const [word, setWord] = useState<string>("");
+
   return (
     <Page>
         <div className="w-full flex flex-col">
@@ -28,17 +31,18 @@ const TranscriptPage = () => {
               <div className="flex flex-col gap-4">
                 {TEST_TRANSCRIPT.map((l) => {
                   return (
-                    <LineCard text={l.text} start={l.start} />
+                    <LineCard details={l} handler={setWord} />
                   )
                 })}
               </div>
             </div>
 
-            <div className="card card-border bg-base-200 w-96">
+            {word !== "" && <div className="card card-border bg-base-200 w-96">
               <div className="card-body">
-                
+                <div className="card-actions justify-end"><button className="btn btn-ghost" onClick={() => setWord("")}>Close</button></div>
+                <div className="card-title">{word}</div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
     </Page>

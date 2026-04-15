@@ -1,10 +1,17 @@
-const DefinitionCard = ({word, handler} : {word: string, handler: React.Dispatch<React.SetStateAction<string>>}) => {
+const DefinitionCard = ({word} : {word: string}) => {
   return (
-    <div className="card card-border bg-base-200 w-96">
-        <div className="card-body">
-        <div className="card-actions justify-end"><button className="btn btn-ghost" onClick={() => handler("")}>Close</button></div>
-        <div className="card-title">{word}</div>
-        </div>
+    <div className="flex flex-col gap-2">
+      <h1 className="text-2xl">{word}</h1>
+      <div className="flex items-center gap-4">
+        <p className="uppercase text-xs text-neutral-400">{"noun"}</p>
+        <p className="text-neutral-400">{"romanisation"}</p>
+      </div>
+      <p className="my-2">{"a common English exclamation, interjection, or noun used as a greeting, a way to attract attention, or a way to express surprise, especially when starting telephone conversations"}</p>
+      <p className="uppercase text-xs font-medium">{"Example"}</p>
+      <p className="italic">{"Example of use"}</p>
+      <div className="border-2 rounded-md p-2 mt-4">
+        <p>AI Insights</p>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import LineCard from "../components/LineCard"
 import Page from "../components/Page"
-import DefinitionCard from "../components/DefinitionCard"
+import DefinitionInterface from "../components/DefinitionInterface"
 
 const TEST_TRANSCRIPT = [
     {
@@ -22,7 +22,7 @@ const TranscriptPage = () => {
   return (
     <Page>
         <div className="w-full flex flex-col">
-          <h1 className="">Title of Video</h1>
+          <h1 className="text-3xl my-4">Title of Video</h1>
           {/* <div className="h-full">
             <iframe width="80%" height="50%" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
           </div> */}
@@ -38,7 +38,7 @@ const TranscriptPage = () => {
               </div>
             </div>
 
-            {word !== "" && <DefinitionCard word={word} handler={setWord} />}
+            {word !== "" && <DefinitionInterface word={word} handler={setWord} />}
           </div>
         </div>
     </Page>

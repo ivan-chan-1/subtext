@@ -18,6 +18,7 @@ const TEST_TRANSCRIPT = [
 
 const TranscriptPage = () => {
   const [word, setWord] = useState<string>("");
+  const [active, setActive] = useState<number | null>(null);
 
   return (
     <Page>
@@ -30,9 +31,9 @@ const TranscriptPage = () => {
           <div className="w-full h-full flex gap-4">
             <div className="grow">
               <div className="flex flex-col gap-4">
-                {TEST_TRANSCRIPT.map((l) => {
+                {TEST_TRANSCRIPT.map((l, i) => {
                   return (
-                    <LineCard details={l} handler={setWord} />
+                    <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} />
                   )
                 })}
               </div>

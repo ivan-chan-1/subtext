@@ -1,8 +1,9 @@
 import type { LineDetails } from "../types";
 
-const LineCard = ({details, handler}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>}) => {
+const LineCard = ({details, handler, active, activate}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void}) => {
   const handleClick = (word: string) => {
     handler(word);
+    activate();
   };
 
   const formatTime = (raw: number) => {
@@ -12,11 +13,11 @@ const LineCard = ({details, handler}: {details: LineDetails, handler: React.Disp
   };
 
   return (
-    <div className="card card-border bg-base-100">
+    <div className={`card card-border bg-base-100 ${active ? "border-amber-300" : ""}`}>
       <div className="card-body">
         <div className="flex gap-6">
           <div className="flex flex-col justify-center items-center w-20">
-            <div className=" text-neutral-400 rounded-full bg-neutral-100 px-2">
+            <div className={`${active ? "text-amber-400 bg-amber-100 font-semibold": "text-neutral-400 bg-neutral-100"} rounded-full px-2`}>
               {formatTime(details.start)}
             </div>
           </div>

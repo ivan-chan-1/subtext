@@ -1,6 +1,7 @@
 import { useState } from "react"
 import LineCard from "../components/LineCard"
 import Page from "../components/Page"
+import DefinitionCard from "../components/DefinitionCard"
 
 const TEST_TRANSCRIPT = [
     {
@@ -37,12 +38,7 @@ const TranscriptPage = () => {
               </div>
             </div>
 
-            {word !== "" && <div className="card card-border bg-base-200 w-96">
-              <div className="card-body">
-                <div className="card-actions justify-end"><button className="btn btn-ghost" onClick={() => setWord("")}>Close</button></div>
-                <div className="card-title">{word}</div>
-              </div>
-            </div>}
+            {word !== "" && <DefinitionCard word={word} handler={setWord} />}
           </div>
         </div>
     </Page>

@@ -5,7 +5,7 @@ import DefinitionInterface from "../components/DefinitionInterface"
 
 const TEST_TRANSCRIPT = [
     {
-        'text': ['Hey', 'there'],
+        'text': ['Hey', 'there', 'Hey', 'there', 'Hey', 'there', 'Hey', 'there'],
         'start': 0.0,
         'duration': 1.54
     },

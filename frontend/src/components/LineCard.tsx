@@ -17,12 +17,12 @@ const LineCard = ({details, handler, active, activate}: {details: LineDetails, h
       <div className="card-body">
         <div className="flex gap-6">
           <div className="flex flex-col justify-center items-center w-20">
-            <div className={`${active ? "text-amber-400 bg-amber-100 font-semibold": "text-neutral-400 bg-neutral-100"} rounded-full px-2`}>
+            <div className={`${active ? "text-amber-600 bg-amber-100 font-semibold": "text-neutral-400 bg-neutral-100"} rounded-full px-2`}>
               {formatTime(details.start)}
             </div>
           </div>
           <div>
-            {details.text.map((w: string) => {return (<><a className="link link-hover text-lg" onClick={() => handleClick(w)}>{w}</a>{" "}</>)})}
+            {details.text.map((w: string) => {return (<><a className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a>{" "}</>)})}
           </div>
         </div>
       </div>

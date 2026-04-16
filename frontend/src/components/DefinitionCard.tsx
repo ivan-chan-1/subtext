@@ -10,7 +10,7 @@ const DefinitionCard = ({word} : {word: string}) => {
       <p className="uppercase text-xs font-medium">{"Example"}</p>
       <p className="italic">{"Example of use"}</p>
       <div className="border-2 rounded-md p-2 mt-4">
-        <p>AI Insights</p>
+        <p className="text-neutral-400">Insights</p>
       </div>
     </div>
   )

@@ -3,3 +3,8 @@ export interface LineDetails {
     start: number;
     duration: number;
 }
+
+export interface ConvertData {
+    vidId: string;
+    lang: string;
+}

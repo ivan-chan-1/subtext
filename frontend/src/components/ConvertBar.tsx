@@ -3,22 +3,13 @@ import LinkInput from './LinkInput'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import type { ConvertData } from '../types';
-import { get } from '../utils/api';
 
 const ConvertBar = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<ConvertData>({lang: "English", vidId: ""});
 
-  const handleSubmit = async () => {
-
-    try {
-      const res = await get( `transcript/${data.vidId}/en`);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      navigate("/transcript");
-    }
-
+  const handleSubmit = () => {
+    navigate(`/transcript/${data.vidId}`);
   };
 
   return (

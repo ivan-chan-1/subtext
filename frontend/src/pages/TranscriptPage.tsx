@@ -2,23 +2,42 @@ import { useState } from "react"
 import LineCard from "../components/LineCard"
 import Page from "../components/Page"
 import DefinitionInterface from "../components/DefinitionInterface"
-
-const TEST_TRANSCRIPT = [
-    {
-        'text': ['Hey', 'there', 'Hey', 'there', 'Hey', 'there', 'Hey', 'there'],
-        'start': 0.0,
-        'duration': 1.54
-    },
-    {
-        'text': ['how','are', 'you'],
-        'start': 1.54,
-        'duration': 4.16
-    }
-]
+import { useParams } from "react-router-dom"
+import { useQuery } from "@tanstack/react-query"
+import { get } from "../utils/api"
+import LoadingPage from "./LoadingPage"
+import type { LineDetails, RawLineDetails } from "../types"
 
 const TranscriptPage = () => {
+  const { vidId } = useParams();
+
   const [word, setWord] = useState<string>("");
   const [active, setActive] = useState<number | null>(null);
+
+  const { 
+    data,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: [vidId], 
+    queryFn: async () => { 
+      return await get(`transcript/${vidId}/en`);
+    },
+    select: (data) => {
+      console.log("Before")
+      console.log(data)
+      return data.map((l: RawLineDetails) => ({
+        ...l,
+        text: l.text.replace("\n", "").split(/\s+/)
+      }))
+    }
+  })
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  console.log(data)
 
   return (
     <Page>
@@ -31,7 +50,7 @@ const TranscriptPage = () => {
           <div className="w-full h-full flex gap-4">
             <div className="grow">
               <div className="flex flex-col gap-4">
-                {TEST_TRANSCRIPT.map((l, i) => {
+                {data.map((l: LineDetails, i: number) => {
                   return (
                     <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} />
                   )

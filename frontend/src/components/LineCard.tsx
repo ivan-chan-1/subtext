@@ -2,7 +2,7 @@ import type { LineDetails } from "../types";
 
 const LineCard = ({details, handler, active, activate}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void}) => {
   const handleClick = (word: string) => {
-    handler(word);
+    handler(word.replace(/[\p{P}\p{S}]/gu, ""));
     activate();
   };
 
@@ -21,8 +21,8 @@ const LineCard = ({details, handler, active, activate}: {details: LineDetails, h
               {formatTime(details.start)}
             </div>
           </div>
-          <div>
-            {details.text.map((w: string) => {return (<><a className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a>{" "}</>)})}
+          <div className="flex flex-wrap gap-1">
+            {details.text.map((w: string) => {return (<><a className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
           </div>
         </div>
       </div>

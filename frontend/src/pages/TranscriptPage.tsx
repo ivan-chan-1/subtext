@@ -33,6 +33,13 @@ const TranscriptPage = () => {
     }
   })
 
+  const titleQuery = useQuery({
+    queryKey: ["title", vidId],
+    queryFn: async () => {
+      return await get(`transcript/title/${vidId}`);
+    }
+  });
+
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -42,7 +49,7 @@ const TranscriptPage = () => {
   return (
     <Page>
         <div className="w-full flex flex-col">
-          <h1 className="text-3xl my-4">Title of Video</h1>
+          <h1 className="text-3xl my-4">{titleQuery.isError ? "Title Not Found" : titleQuery.data}</h1>
           {/* <div className="h-full">
             <iframe width="80%" height="50%" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
           </div> */}

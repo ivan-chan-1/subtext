@@ -60,3 +60,7 @@ a {
   text-decoration: none;
 }
 
+iframe {
+  width: 50%;
+  aspect-ratio: 16 / 9;
+}

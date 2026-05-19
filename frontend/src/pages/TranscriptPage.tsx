@@ -48,15 +48,15 @@ const TranscriptPage = () => {
 
   return (
     <Page>
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col gap-5">
+          <div className="mt-12 flex justify-center">
+            <iframe src={`https://www.youtube.com/embed/${vidId}`}></iframe>
+          </div>
           <h1 className="text-3xl my-4">{titleQuery.isError ? "Title Not Found" : titleQuery.data}</h1>
-          {/* <div className="h-full">
-            <iframe width="80%" height="50%" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-          </div> */}
 
           <div className="w-full h-full flex gap-4">
-            <div className="grow">
-              <div className="flex flex-col gap-4">
+            <div className="grow mb-8">
+              <div className="flex flex-col gap-4 overflow-auto">
                 {data.map((l: LineDetails, i: number) => {
                   return (
                     <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} />

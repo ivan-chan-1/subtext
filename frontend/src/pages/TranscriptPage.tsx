@@ -44,8 +44,6 @@ const TranscriptPage = () => {
     return <LoadingPage />;
   }
 
-  console.log(data)
-
   return (
     <Page>
         <div className="w-full flex flex-col gap-5">
@@ -56,7 +54,7 @@ const TranscriptPage = () => {
 
           <div className="w-full h-full flex gap-4">
             <div className="grow mb-8">
-              <div className="flex flex-col gap-4 overflow-auto">
+              <div className="flex flex-col gap-4 overflow-auto h-200">
                 {data.map((l: LineDetails, i: number) => {
                   return (
                     <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} />

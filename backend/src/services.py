@@ -1,6 +1,8 @@
 from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.proxies import WebshareProxyConfig
 from google import genai
 from dotenv import load_dotenv
+import os
 from enum import Enum
 from typing import List, Dict
 
@@ -13,14 +15,19 @@ class ResponseType(Enum):
     TEXT = "text/plain"
     JSON = "application/json"
 
-yt = YouTubeTranscriptApi()
+yt = YouTubeTranscriptApi(
+    proxy_config=WebshareProxyConfig(
+        proxy_username = os.getenv("PROXY_USERNAME"),
+        proxy_password = os.getenv("PROXY_PASSWORD")
+    )
+)
 client = genai.Client()
 
 ## AI
 def gemini(prompt: str, res_type: ResponseType):
     res = client.models.generate_content(model=MODEL, contents=prompt, config={"response_mime_type": res_type.value})
     
-    if ResponseType.JSON == res_type.value:
+    if ResponseType.JSON == res_type:
         return json.loads(res.text)
     else:
         return res.text

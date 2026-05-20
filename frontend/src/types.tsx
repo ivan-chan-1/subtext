@@ -14,3 +14,10 @@ export interface ConvertData {
     vidId: string;
     lang: string;
 }
+
+export interface Definition {
+    meaning: string;
+    example: string;
+    pos: string;
+    romanisation: string;
+}

@@ -1,6 +1,22 @@
+import { useQuery } from "@tanstack/react-query";
 import DefinitionCard from "./DefinitionCard"
+import { get } from "../utils/api";
+import type { Definition } from "../types";
 
 const DefinitionInterface = ({word, handler} : {word: string, handler: React.Dispatch<React.SetStateAction<string>>}) => {
+  const { 
+    data,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: [word], 
+    queryFn: async () => {
+      return await get(`translate/${word}/en`);
+    }
+  })
+
+  console.log(data);
+
   return (
     <div className="card card-border bg-base-100 w-96 mb-8">
       <div className="card-body">
@@ -13,8 +29,15 @@ const DefinitionInterface = ({word, handler} : {word: string, handler: React.Dis
           </button>
         </div>
         <div className="flex flex-col">
-          <DefinitionCard word={word} />
-          <div className="divider"/>
+          {data && data.definitions.map((d: Definition, i: number) => {
+            return (
+              <DefinitionCard key={`definition-${i}`} word={word} definition={d} />
+            );
+          })}
+          <div className="border-2 rounded-md p-2 mt-4">
+            <p className="text-neutral-400">Insights</p>
+            <p className="my-2">{data && data.cultural}</p>
+          </div>
         </div>
       </div>
     </div>

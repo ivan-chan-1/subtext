@@ -9,6 +9,10 @@ const ConvertBar = () => {
   const [data, setData] = useState<ConvertData>({lang: "English", vidId: ""});
 
   const handleSubmit = () => {
+    if (!data.vidId) {
+      return;
+    }
+
     navigate(`/transcript/${data.vidId}`);
   };
 

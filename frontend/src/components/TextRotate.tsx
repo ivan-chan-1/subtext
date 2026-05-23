@@ -5,7 +5,7 @@ const TextRotate = () => {
         <span>subtext</span>
         <span>潜台词</span>
         <span>subtexto</span>
-        <span>숨은 의미</span>
+        <span>자막</span>
         <span>sous-texte</span>
         <span>hàm ý</span>
       </span>

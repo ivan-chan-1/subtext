@@ -30,14 +30,18 @@ const TranscriptPage = () => {
         ...l,
         text: l.text.replace("\n", "").split(/\s+/)
       }))
-    }
+    },
+    staleTime: Infinity,
+    refetchOnWindowFocus: false
   })
 
   const titleQuery = useQuery({
     queryKey: ["title", vidId],
     queryFn: async () => {
       return await get(`transcript/title/${vidId}`);
-    }
+    },
+    staleTime: Infinity,
+    refetchOnWindowFocus: false
   });
 
   if (isLoading) {

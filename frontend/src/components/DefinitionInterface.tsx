@@ -12,7 +12,8 @@ const DefinitionInterface = ({word, handler} : {word: string, handler: React.Dis
     queryKey: [word], 
     queryFn: async () => {
       return await get(`translate/${word}/en`);
-    }
+    },
+    refetchOnWindowFocus: false
   })
 
   console.log(data);

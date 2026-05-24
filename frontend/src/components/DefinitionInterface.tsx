@@ -16,8 +16,6 @@ const DefinitionInterface = ({word, handler} : {word: string, handler: React.Dis
     refetchOnWindowFocus: false
   })
 
-  console.log(data);
-
   return (
     <div className="card card-border bg-base-100 w-96 mb-8">
       <div className="card-body">
@@ -30,9 +28,10 @@ const DefinitionInterface = ({word, handler} : {word: string, handler: React.Dis
           </button>
         </div>
         <div className="flex flex-col">
+          <h1 className="text-2xl lowercase">{word}</h1>
           {data && data.definitions.map((d: Definition, i: number) => {
             return (
-              <DefinitionCard key={`definition-${i}`} word={word} definition={d} />
+              <DefinitionCard key={`definition-${i}`} definition={d} />
             );
           })}
           <div className="border-2 rounded-md p-2 mt-4">

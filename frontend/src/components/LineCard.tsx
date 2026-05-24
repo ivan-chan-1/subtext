@@ -22,7 +22,7 @@ const LineCard = ({details, handler, active, activate}: {details: LineDetails, h
             </div>
           </div>
           <div className="flex flex-wrap gap-1">
-            {details.text.map((w: string) => {return (<><a className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
+            {details.text.map((w: string, i: number) => {return (<><a key={`${details.start}-word-${i}`}className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
           </div>
         </div>
       </div>

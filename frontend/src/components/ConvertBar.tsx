@@ -17,7 +17,7 @@ const ConvertBar = () => {
   };
 
   return (
-    <div className="card w-auto bg-base-100 shadow-xl rounded-full">
+    <div className="card w-auto bg-base-100 shadow-2xl rounded-full">
       <div className='card-body'>
         <div className='flex gap-2'>
           <Selector onChange={setData}/>

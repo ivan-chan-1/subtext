@@ -36,7 +36,7 @@
   font-weight: 400;
 
   color: black;
-  background-color: #ffffff;
+  background-color: #FAF9F6;
 }
 
 body {
@@ -58,9 +58,4 @@ body {
 
 a {
   text-decoration: none;
-}
-
-iframe {
-  width: 50%;
-  aspect-ratio: 16 / 9;
 }

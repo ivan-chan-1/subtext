@@ -1,6 +1,6 @@
 import type { LineDetails } from "../types";
 
-const LineCard = ({details, handler, active, activate}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void}) => {
+const LineCard = ({details, handler, active, activate, currentTime}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void, currentTime: number}) => {
   const handleClick = (word: string) => {
     handler(word.replace(/[\p{P}\p{S}]/gu, ""));
     activate();
@@ -12,6 +12,10 @@ const LineCard = ({details, handler, active, activate}: {details: LineDetails, h
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
+  if (currentTime >= details.start && currentTime < details.start + details.duration) {
+    activate()
+  }
+
   return (
     <div className={`card card-border bg-base-100 ${active ? "border-amber-300" : ""}`}>
       <div className="card-body">
@@ -22,7 +26,7 @@ const LineCard = ({details, handler, active, activate}: {details: LineDetails, h
             </div>
           </div>
           <div className="flex flex-wrap gap-1">
-            {details.text.map((w: string, i: number) => {return (<><a key={`${details.start}-word-${i}`}className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
+            {details.text.map((w: string, i: number) => {return (<><a key={`${details.start}-word-${i}`} className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
           </div>
         </div>
       </div>

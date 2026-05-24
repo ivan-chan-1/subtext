@@ -1,9 +1,10 @@
 import type { LineDetails } from "../types";
 
-const LineCard = ({details, handler, active, activate, currentTime}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void, currentTime: number}) => {
-  const handleClick = (word: string) => {
+const LineCard = ({details, handler, active, activate, currentTime, player}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void, currentTime: number, player: React.RefObject<any>}) => {
+  const handleClick = (word: string, start: number) => {
     handler(word.replace(/[\p{P}\p{S}]/gu, ""));
     activate();
+    player.current.seekTo(start)
   };
 
   const formatTime = (raw: number) => {
@@ -26,7 +27,7 @@ const LineCard = ({details, handler, active, activate, currentTime}: {details: L
             </div>
           </div>
           <div className="flex flex-wrap gap-1">
-            {details.text.map((w: string, i: number) => {return (<><a key={`${details.start}-word-${i}`} className="animated-link text-lg" onClick={() => handleClick(w)}>{w}</a></>)})}
+            {details.text.map((w: string, i: number) => {return (<><a key={`${details.start}-word-${i}`} className="animated-link text-lg" onClick={() => handleClick(w, details.start)}>{w}</a></>)})}
           </div>
         </div>
       </div>

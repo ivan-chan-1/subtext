@@ -40,7 +40,7 @@ const TranscriptPage = () => {
           <div className="my-12 flex justify-center">
             <YouTube videoId={vidId} opts={opts} style={frameStyle} onReady={onReady}/>
           </div>
-          <ExpandedTranscript vidId={vidId ? vidId : ""} currentTime={currentTime} />
+          <ExpandedTranscript vidId={vidId ? vidId : ""} currentTime={currentTime} player={playerRef} />
         </div>
     </Page>
   )

@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import { get } from "../utils/api"
 import type { LineDetails, RawLineDetails } from "../types"
 
-const ExpandedTranscript = ({vidId, currentTime} : {vidId: string, currentTime: number}) => {
+const ExpandedTranscript = ({vidId, currentTime, player} : {vidId: string, currentTime: number, player: React.RefObject<any>}) => {
   const [word, setWord] = useState<string>("");
   const [active, setActive] = useState<number | null>(null);
 
@@ -35,7 +35,7 @@ const ExpandedTranscript = ({vidId, currentTime} : {vidId: string, currentTime: 
       <div className="flex flex-col gap-4 overflow-auto h-200 w-213.5">
         {data && data.map((l: LineDetails, i: number) => {
           return (
-            <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} currentTime={currentTime}/>
+            <LineCard key={`line-${i}`} details={l} handler={setWord} active={active === i} activate={() => setActive(i)} currentTime={currentTime} player={player} />
           )
         })}
       </div>

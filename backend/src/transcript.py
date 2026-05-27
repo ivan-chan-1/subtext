@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from .services import vid_to_text, vid_summary
 import requests
 from bs4 import BeautifulSoup
+from models import Bookmark
 
 URL = "https://www.youtube.com/watch?v="
 
@@ -19,3 +20,14 @@ def get_transcript(vid_id: str, lang: str):
     res = vid_to_text(vid_id, [lang])
     # vid_summary(res)
     return res
+
+@router.post("/bookmark", tags=["transcript"])
+def bookmark_vocab(bookmark: Bookmark):
+    res = (
+        supabase.table("bookmarks")
+        .insert({
+            "user_id": bookmark.userId,
+            "vocab_id": bookmark.vocab,
+            "notes": bookmark.notes
+        })
+    )

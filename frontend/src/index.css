@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -58,4 +59,10 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.logo-font {
+  font-family: "Bagel Fat One";
+  font-size: 36px;
+  color: oklch(82% 0.189 84.429);
 }

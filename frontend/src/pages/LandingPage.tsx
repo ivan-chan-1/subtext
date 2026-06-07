@@ -8,7 +8,7 @@ const LandingPage = () => {
     <Page>
       <div className="relative min-h-screen">
         <div className="absolute top-15 w-full">
-          <NavBar />
+          <NavBar showMenu />
         </div>
         <div className="flex flex-col justify-center items-center min-h-screen">
           <TextRotate />

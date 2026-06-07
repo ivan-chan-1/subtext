@@ -19,11 +19,11 @@ const LinkInput = ({onChange}: {onChange: React.Dispatch<React.SetStateAction<Co
         type="url"
         required
         placeholder={LINK_PLACEHOLDER}
-        // pattern="^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=.*$"
-        // title="Must be valid URL"
+        // pattern={PATTERN}
         className="input w-96 rounded-full"
         onChange={(e) => handleChange(e)}
       />
+      {/* <div className="validator-hint hidden">Must be valid Youtube URL</div> */}
     </div>
   )
 }

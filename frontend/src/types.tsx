@@ -21,3 +21,10 @@ export interface Definition {
     pos: string;
     romanisation: string;
 }
+
+export interface WordDetails {
+    word: string;
+    definitions: string[];
+    bookmarks: number;
+    timestamp: string;
+}

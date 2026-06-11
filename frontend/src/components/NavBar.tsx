@@ -28,7 +28,7 @@ const NavBar = ({ showMenu }: { showMenu: boolean }) => {
         <div className="card card-xs bg-base-100 shadow-2xl w-auto rounded-full">
           <div className="card-body flex flex-row">
             {/* Home Button */}
-            <button className="btn btn-circle">
+            <button className="btn btn-circle" onClick={handleHomeClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -46,18 +46,18 @@ const NavBar = ({ showMenu }: { showMenu: boolean }) => {
             </button>
 
             {/* Login Button */}
-            <div>
+            {loggedIn && <div>
               <button
                 className="btn btn-md btn-primary rounded-full"
                 onClick={handleLoginClick}
               >
                 Sign In
               </button>
-            </div>
+            </div>}
 
             {/* Profile */}
             {loggedIn && <div className="avatar avatar-placeholder" onClick={handleProfileClick}>
-              <div className="bg-primary text-primary-content w-10 rounded-full">
+              <div className="bg-base-200 text-neutral w-10 rounded-full">
                 <span className="text-lg">D</span>
               </div>
             </div>}

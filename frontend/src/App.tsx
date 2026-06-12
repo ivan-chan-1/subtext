@@ -5,6 +5,7 @@ import TranscriptPage from './pages/TranscriptPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import LoginPage from './pages/LoginPage'
 import UserPage from './pages/UserPage'
+import BookmarkPage from './pages/BookmarkPage'
 
 const queryClient = new QueryClient()
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/user" element={<UserPage />} />
             <Route path="/load" element={<LoadingPage />} />
             <Route path="/transcript/:vidId" element={<TranscriptPage />} />
+            <Route path="/bookmark/:word" element={<BookmarkPage />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

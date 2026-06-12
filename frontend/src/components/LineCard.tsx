@@ -1,16 +1,11 @@
 import type { LineDetails } from "../types";
+import { formatTime } from "../utils/helpers";
 
 const LineCard = ({details, handler, active, activate, currentTime, player}: {details: LineDetails, handler: React.Dispatch<React.SetStateAction<string>>, active: boolean, activate: () => void, currentTime: number, player: React.RefObject<any>}) => {
   const handleClick = (word: string, start: number) => {
     handler(word.replace(/[\p{P}\p{S}]/gu, ""));
     activate();
     player.current.seekTo(start)
-  };
-
-  const formatTime = (raw: number) => {
-    const mins = Math.floor(raw / 60);
-    const secs = Math.floor(raw % 60);
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   if (currentTime >= details.start && currentTime < details.start + details.duration) {

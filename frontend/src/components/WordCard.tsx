@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import type { WordDetails } from "../types";
 
 const WordCard = ({ details }: { details: WordDetails }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/bookmark/${details.word.toLowerCase()}`)
+  }
   
   const formatDate = (ts: string) => {
     return new Date(ts).toLocaleDateString("en-GB", {
@@ -11,7 +17,7 @@ const WordCard = ({ details }: { details: WordDetails }) => {
   }
 
   return (
-    <div className="card card-sm bg-base-100 border border-base-300 max-h-56">
+    <div className="card card-sm bg-base-100 border border-base-300 max-h-56" onClick={handleClick}>
       <div className="card-body flex flex-col gap-4">
         <h1 className="text-xl lowercase">{details.word}</h1>
         {/* Definitions */}

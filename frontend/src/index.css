@@ -58,6 +58,10 @@ body {
   }
 }
 
+.word-highlight {
+  box-shadow: inset 0 -0.4rem 0 0 oklch(92.4% 0.12 95.746);
+}
+
 .logo-font {
   font-family: "Bagel Fat One";
   font-size: 36px;

@@ -1,6 +1,6 @@
 import type { Definition } from "../types"
 
-const DefinitionCard = ({definition} : {definition: Definition}) => {
+const DefinitionCard = ({definition, divider = false} : {definition: Definition, divider?: boolean}) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-4">
@@ -10,7 +10,7 @@ const DefinitionCard = ({definition} : {definition: Definition}) => {
       <p className="my-2">{definition.meaning}</p>
       <p className="uppercase text-xs font-medium">{"Example"}</p>
       <p className="italic">{definition.example}</p>
-      <div className="divider"/>
+      {divider && <div className="divider"/>}
     </div>
   )
 }

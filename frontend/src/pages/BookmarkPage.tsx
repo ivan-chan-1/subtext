@@ -22,9 +22,7 @@ const BookmarkPage = () => {
 
   return (
     <Page>
-      <div className="mt-15 mb-8">
-        <NavBar showMenu/>
-      </div>
+      <NavBar className="mt-15 mb-8" showMenu/>
       <div className="flex flex-col gap-4">
         <h1 className="text-5xl">{word}</h1>
         <h2 className="text-lg uppercase font-light text-neutral-400 mt-8">Definitions</h2>
@@ -36,11 +34,13 @@ const BookmarkPage = () => {
           })}
         </div>
         <h2 className="text-lg uppercase font-light text-neutral-400">Videos ({videos.length})</h2>
-        {word && (videos.map((v) => {
-          return (
-            <YoutubeBookmarkCard key={v} videoId={v} word={word} />
-          );
-        }))}
+        <div className="flex flex-col gap-4">
+          {word && (videos.map((v) => {
+            return (
+              <YoutubeBookmarkCard key={v} videoId={v} word={word} />
+            );
+          }))}
+        </div>
       </div>
     </Page>
   )

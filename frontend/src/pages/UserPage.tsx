@@ -48,8 +48,17 @@ const UserPage = () => {
 
   return (
     <Page>
-      <NavBar showMenu/>
-      <h1 className="text-5xl">Hello, {USER}</h1>
+      <NavBar className="my-15" showMenu/>
+      <h1 className="text-5xl mb-15">Hello, {USER}</h1>
+      <div className="mb-8">
+        <select defaultValue="Pick a language" className="select rounded-full">
+          <option disabled={true}>Pick a language</option>
+          <option>English</option>
+          <option>Korean</option>
+          <option>Chinese</option>
+        </select>
+      </div>
+      <h2 className="text-lg uppercase font-light text-neutral-400 mb-4">bookmarked</h2>
       <div className="grid grid-cols-3 gap-4">
         {wordData.map((w, i) => {
           return(

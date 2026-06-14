@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({ showMenu }: { showMenu: boolean }) => {
+const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: boolean }) => {
   const [loggedIn, setLoggedIn] = useState<boolean>(true);
   const navigate = useNavigate();
   const handleHomeClick = () => {
@@ -17,7 +17,7 @@ const NavBar = ({ showMenu }: { showMenu: boolean }) => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className={`flex items-center justify-between ${className}`}>
       {/* Logo */}
       <div className="flex items-center gap-4" onClick={handleHomeClick}>
         <h1 className="text-2xl logo-font">subtext</h1>

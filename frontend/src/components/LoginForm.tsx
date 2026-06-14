@@ -9,7 +9,7 @@ const LoginForm = () => {
   return (
     <div className="card bg-base-100 w-96 shadow-xl">
       <div className="card-body flex flex-col">
-        <h1 className="text-xl font-semibold mb-4">{newUser ? "Create an Account": "Login"}</h1>
+        <h1 className="text-xl font-medium mb-4">{newUser ? "Create an Account": "Login"}</h1>
         <form className="fieldset bg-base-100 w-full p-0">
           <fieldset className="fieldset">
             <label className="label">Email</label>

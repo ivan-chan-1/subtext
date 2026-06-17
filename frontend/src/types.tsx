@@ -28,3 +28,8 @@ export interface WordDetails {
     bookmarks: number;
     timestamp: string;
 }
+
+export interface LoginFormData {
+    email: string;
+    password: string;
+}

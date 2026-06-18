@@ -19,8 +19,6 @@ const ExpandedTranscript = ({vidId, currentTime, player} : {vidId: string, curre
       return await get(`transcript/${vidId}/en`);
     },
     select: (data) => {
-      console.log("Before")
-      console.log(data)
       return data.map((l: RawLineDetails) => ({
         ...l,
         text: l.text.replace("\n", "").split(/\s+/)

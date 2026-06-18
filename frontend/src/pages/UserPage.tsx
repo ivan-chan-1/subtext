@@ -49,7 +49,7 @@ const UserPage = () => {
   return (
     <Page>
       <NavBar className="my-15" showMenu/>
-      <h1 className="text-5xl mb-15">Hello, {USER}</h1>
+      <h1 className="text-5xl mb-15">Hello 👋</h1>
       <div className="mb-8">
         <select defaultValue="Pick a language" className="select rounded-full">
           <option disabled={true}>Pick a language</option>

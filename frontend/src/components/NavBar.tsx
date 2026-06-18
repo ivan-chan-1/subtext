@@ -1,19 +1,37 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { supabase } from "../supabase";
+import toast from "react-hot-toast";
 
 const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: boolean }) => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const { user } = useAuth();
   const navigate = useNavigate();
   const handleHomeClick = () => {
     navigate("/");
+  };
+
+  const handleBookMarkClick = () => {
+    navigate("/user");
   };
 
   const handleLoginClick = () => {
     navigate("/login");
   };
 
-  const handleProfileClick = () => {
-    navigate("/user");
+  const handleLogoutClick = () => {
+    toast.promise(async () => {
+      const { error } = await supabase.auth.signOut({ scope: 'local' });
+      if (error) {
+        throw error;
+      } else {
+        navigate("/");
+      }
+      },
+      {
+        loading: 'Signing Out',
+        error: (e) => `Error: ${e}`
+      }
+    );
   };
 
   return (
@@ -35,7 +53,7 @@ const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: bo
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="size-7"
+                className="size-6"
               >
                 <path
                   strokeLinecap="round"
@@ -46,7 +64,7 @@ const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: bo
             </button>
 
             {/* Login Button */}
-            {loggedIn && <div>
+            {!user && <div>
               <button
                 className="btn btn-md btn-primary rounded-full"
                 onClick={handleLoginClick}
@@ -55,11 +73,27 @@ const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: bo
               </button>
             </div>}
 
-            {/* Profile */}
-            {loggedIn && <div className="avatar avatar-placeholder" onClick={handleProfileClick}>
-              <div className="bg-base-200 text-neutral w-10 rounded-full">
-                <span className="text-lg">D</span>
-              </div>
+            {/* Logout Button */}
+            {user && <div>
+              <button
+                className="btn btn-md rounded-full px-3 font-medium"
+                onClick={handleBookMarkClick}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                </svg>
+                Bookmarks
+              </button>
+            </div>}
+
+            {/* Logout Button */}
+            {user && <div>
+              <button className="btn btn-md rounded-full px-3 font-medium" onClick={handleLogoutClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+                Logout
+              </button>
             </div>}
           </div>
         </div>

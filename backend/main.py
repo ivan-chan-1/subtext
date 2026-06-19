@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .src import transcript
-from .src import translate
+from .src import vocab
+from .src import user
+
 
 app = FastAPI()
 app.include_router(transcript.router)
-app.include_router(translate.router)
+app.include_router(vocab.router)
+app.include_router(user.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],

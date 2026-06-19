@@ -20,10 +20,6 @@ def save_vocab(word: str, definitions: str, category: str):
             .execute()
         )
 
-        print(supabase)
-
-        print("SUCCESS")
-        print(res)
         return
     except Exception as e:
         raise HTTPException(
@@ -46,14 +42,18 @@ def translate_vocab(word: str, lang: str, category: str = "word"):
             detail=str(e)
         )
 
-# @router.post("/vocab/bookmark", tags=["transcript"])
-# def bookmark_vocab(bookmark: Bookmark):
-#     res = (
-#         supabase.table("bookmarks")
-#         .insert({
-#             "user_id": bookmark.userId,
-#             "vocab_id": bookmark.vocab,
-#             "notes": bookmark.notes
-#         })
-#         .execute()
-#     )
+@router.post("/vocab/bookmark", tags=["vocab"])
+def bookmark_vocab(bookmark: Bookmark):
+    res = (
+        supabase.table("bookmarks")
+        .insert({
+            "user_id": bookmark.userId,
+            "vocab_id": bookmark.vocab,
+            "notes": bookmark.notes
+        })
+        .execute()
+    )
+
+@router.get("/vocab/definitions", tags=["vocab"])
+def vocab_definitions(vocab: str):
+    pass

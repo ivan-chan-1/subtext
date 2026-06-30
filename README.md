@@ -9,7 +9,7 @@ An AI-powered platform that enables users to learn languages interactively throu
 
 ### Features
 
-**Youtube Transcript**  
+**Following Along with the Transcript**  
 Users can enter their favourite Youtube video, and follow along with the transcript. 
 
 <!-- ![Subcourse Creation](https://github.com/user-attachments/assets/691c983d-25f5-4b12-94a3-12c52c0d796e) -->

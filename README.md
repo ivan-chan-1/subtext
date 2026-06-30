@@ -1,6 +1,8 @@
 # subtext
 
-An AI-powered platform that enables users to learn languages interactively through their favourite Youtube videos. Powered by intelligent, contextual explanations of subtitles, users not only learn unfamiliar phrases but also the cultural nuances that are often lost in direct translations, which transforms passive video watching into an immersive language-learning experience.
+An AI-powered platform that enables users to learn languages interactively through their favourite Youtube videos. 
+
+Powered by intelligent, contextual explanations of subtitles, users not only learn unfamiliar phrases but also the cultural nuances that are often lost in direct translations, which transforms passive video watching into an immersive language-learning experience.
 
 ### Tech-Stack
 - 💻 Languages: Typescript, Python

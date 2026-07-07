@@ -1,12 +1,12 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from .services import translate_word
 from .models import Bookmark
-from ..db import supabase
-import traceback
+from supabase import Client
+from ..db import get_authed_db
 
 router = APIRouter()
 
-def save_vocab(word: str, definitions: str, category: str):
+def save_vocab(word: str, definitions: str, category: str, supabase: Client = Depends(get_authed_db)):
     try:
         res = (
             supabase.table("vocab")
@@ -36,14 +36,13 @@ def translate_vocab(word: str, lang: str, category: str = "word"):
         
         return res
     except Exception as e:
-        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail=str(e)
         )
 
 @router.post("/vocab/bookmark", tags=["vocab"])
-def bookmark_vocab(bookmark: Bookmark):
+def bookmark_vocab(bookmark: Bookmark, supabase: Client = Depends(get_authed_db)):
     res = (
         supabase.table("bookmarks")
         .insert({

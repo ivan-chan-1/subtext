@@ -1,11 +1,20 @@
 import config from "../config.json";
+import { getToken } from "./helpers";
 
-export const createRequest = async (url: string, type: string, body) => {
-  const options = {
+interface RequestOptions {
+  method: string;
+  headers: Record<string, string>;
+  body?: string;
+}
+
+export const createRequest = async (url: string, type: string, body?: Record<string, unknown>) => {
+  const token = await getToken();
+  const options: RequestOptions = {
     method: type,
     headers : {
       'Content-type': 'application/json',
-    },
+      'Authorization': 'Bearer ' + token
+    }
   }
 
   if (body !== undefined) {
@@ -15,10 +24,10 @@ export const createRequest = async (url: string, type: string, body) => {
   .then((response) => response.json())
 }
 
-export const get = (url: string, body) => createRequest(url, "GET", body);
+export const get = (url: string, body?: Record<string, unknown>) => createRequest(url, "GET", body);
 
-export const post = (url: string, body) => createRequest(url, "POST", body);
+export const post = (url: string, body?: Record<string, unknown>) => createRequest(url, "POST", body);
 
-export const put = (url: string, body) => createRequest(url, "PUT", body);
+export const put = (url: string, body?: Record<string, unknown>) => createRequest(url, "PUT", body);
 
-export const del = (url: string, body) => createRequest(url, "DELETE", body);
+export const del = (url: string, body?: Record<string, unknown>) => createRequest(url, "DELETE", body);

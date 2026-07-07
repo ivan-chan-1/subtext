@@ -1,50 +1,22 @@
+import { useQuery } from "@tanstack/react-query"
 import NavBar from "../components/NavBar"
 import Page from "../components/Page"
 import WordCard from "../components/WordCard"
-
-const USER = "User"
-
-const wordData = [
-  {
-    word: "Ephemeral",
-    definitions: [
-      "Lasting for a very short time",
-      "Transitory; short-lived",
-    ],
-    bookmarks: 12,
-    timestamp: "2025-03-15T08:23:11+00:00"
-  },
-  {
-    word: "Luminous",
-    definitions: [
-      "Emitting or reflecting light; glowing",
-      "Full of light; bright",
-      "Clearly expressed; easy to understand",
-      "Clearly expressed; easy to understand"
-    ],
-    bookmarks: 7,
-    timestamp: "2025-01-02T14:05:44+00:00"
-  },
-  {
-    word: "Melancholy",
-    definitions: [
-      "A feeling of pensive sadness with no obvious cause",
-      "Having a feeling of melancholy; sad and pensive"
-    ],
-    bookmarks: 3,
-    timestamp: "2025-06-01T19:47:30+00:00"
-  },
-  {
-    word: "Serendipity",
-    definitions: [
-      "The occurrence of events by chance in a happy or beneficial way",
-    ],
-    bookmarks: 21,
-    timestamp: "2024-11-18T11:30:00+00:00"
-  },
-]
+import { get } from "../utils/api"
+import { Link } from "react-router-dom"
 
 const UserPage = () => {
+  const { 
+    data,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["getAllBookmarks"], 
+    queryFn: async () => {
+      return await get(`user/bookmarks/all?${new URLSearchParams({"language": "en"})}`);
+    },
+    refetchOnWindowFocus: false
+  })
 
   return (
     <Page>
@@ -59,13 +31,17 @@ const UserPage = () => {
         </select>
       </div>
       <h2 className="text-lg uppercase font-light text-neutral-400 mb-4">bookmarked</h2>
-      <div className="grid grid-cols-3 gap-4">
-        {wordData.map((w, i) => {
-          return(
-            <WordCard key={`${w}-${i}`} details={w} />
-          )
-        })}
-      </div>
+      {data ?? data.length === 0 ?
+        <p>No bookmarks found. Explore <Link className="link" to="/">now</Link>!</p>
+        :
+        <div className="grid grid-cols-3 gap-4">
+          {data.map((w, i) => {
+            return(
+              <WordCard key={`${w}-${i}`} details={w} />
+            )
+          })}
+        </div>
+      }
     </Page>
   )
 }

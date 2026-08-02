@@ -15,7 +15,7 @@ Powered by intelligent, contextual explanations of subtitles, users not only lea
 **Following Along with the Transcript**  
 Users can enter their favourite Youtube video, and follow along with the transcript. 
 
-<!-- ![Subcourse Creation](https://github.com/user-attachments/assets/691c983d-25f5-4b12-94a3-12c52c0d796e) -->
+![](gifs/transcript.gif)
 
 **Selecting Words to Learn**  
 Users click onto unfamiliar words to get an intelligent explanation powered by AI. Users who are logged in can bookmark their favourites to review later.
@@ -25,7 +25,7 @@ Users click onto unfamiliar words to get an intelligent explanation powered by A
 **Reviewing Words**  
 Users who have an account can review their bookmarked words and their explanations. Users can find all instances they have bookmarked the same word from different videos in a single interface. Users can also revisit that same moment in the video where the word appears. 
 
-<!-- ![Finding Group and Project Preferences (1)](https://github.com/user-attachments/assets/c1bf03a0-19c6-44ce-93df-03960ea2d9f3) -->
+![](gifs/review.gif)
 
 ### Build
 Further instructions comming soon.

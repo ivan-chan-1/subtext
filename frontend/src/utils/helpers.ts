@@ -10,3 +10,11 @@ export const getToken = async () => {
   const res = await supabase.auth.getSession();
   return res.data.session?.access_token;
 }
+
+export const formatDate = (ts: string) => {
+  return new Date(ts).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  })
+}

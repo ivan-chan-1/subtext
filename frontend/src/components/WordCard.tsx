@@ -7,14 +7,6 @@ const WordCard = ({ details }: { details: WordDetails }) => {
   const handleClick = () => {
     navigate(`/bookmark/${details.vocabId}`)
   }
-  
-  // const formatDate = (ts: string) => {
-  //   return new Date(ts).toLocaleDateString("en-GB", {
-  //     day: "2-digit",
-  //     month: "2-digit",
-  //     year: "numeric"
-  //   })
-  // }
 
   return (
     <div className="card card-sm bg-base-100 border border-base-300" onClick={handleClick}>

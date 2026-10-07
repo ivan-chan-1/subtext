@@ -40,3 +40,15 @@ export interface VocabData {
     type: string;
     vocab: string;
 }
+
+export interface BookmarkData {
+    id: string;
+    visited_at: string;
+    user_id: string;
+    vocab_id: string;
+    context: string;
+    snippet: string;
+    vid_id: string;
+    vid_timestamp: number;
+    language: string;
+}

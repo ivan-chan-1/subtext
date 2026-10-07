@@ -26,7 +26,6 @@ const UserPage = () => {
     },
     refetchOnWindowFocus: false
   })
-  console.log(data)
 
   return (
     <Page>

@@ -1,4 +1,4 @@
-import { supabase } from "../supabase";
+import { supabase } from "../lib/supabase";
 
 export const formatTime = (raw: number) => {
   const mins = Math.floor(raw / 60);

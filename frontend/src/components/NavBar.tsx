@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { supabase } from "../supabase";
+import { supabase } from "../lib/supabase";
 import toast from "react-hot-toast";
 
 const NavBar = ({ className = "", showMenu }: { className?: string, showMenu: boolean }) => {

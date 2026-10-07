@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query"
 import NavBar from "../components/NavBar"
 import Page from "../components/Page"
 import WordCard from "../components/WordCard"
-import { get } from "../utils/api"
 import { Link } from "react-router-dom"
+import { supabase } from "../lib/supabase"
 
 const UserPage = () => {
   const { 
@@ -13,7 +13,9 @@ const UserPage = () => {
   } = useQuery({
     queryKey: ["getAllBookmarks"], 
     queryFn: async () => {
-      return await get(`user/bookmarks/all?${new URLSearchParams({"language": "en"})}`);
+      const { data, error } = await supabase.from("bookmarks").select("*").eq("language", "en");
+      if (error) throw error;
+      return data
     },
     refetchOnWindowFocus: false
   })
@@ -31,7 +33,7 @@ const UserPage = () => {
         </select>
       </div>
       <h2 className="text-lg uppercase font-light text-neutral-400 mb-4">bookmarked</h2>
-      {data ?? data.length === 0 ?
+      {!data || data.length === 0 ?
         <p>No bookmarks found. Explore <Link className="link" to="/">now</Link>!</p>
         :
         <div className="grid grid-cols-3 gap-4">

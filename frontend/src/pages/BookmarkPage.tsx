@@ -6,15 +6,15 @@ import DefinitionCard from "../components/DefinitionCard";
 
 const definitions = [
   {
-    meaning: "bright",
-    example: "bright bright",
+    meaning: "a popular dairy product made from milk, usually from cows, goats, or sheep, shaped into soft or hard blocks",
+    example: "The initiative puts red meat, chicken, cheese, vegetables and fruits at the top and grains like bread, cereal, rice and pasta at the bottom.",
     pos: "noun",
-    romanisation: "def"
+    romanisation: ""
   }
 ];
 
 const videos = [
-  "2lyygzfl1ZY"
+  "QKae1k1BDdA"
 ];
 
 const BookmarkPage = () => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { LoginFormData } from "../types";
-import { supabase } from "../supabase";
+import { supabase } from "../lib/supabase";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 

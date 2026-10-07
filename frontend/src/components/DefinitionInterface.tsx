@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import DefinitionCard from "./DefinitionCard"
 import { get } from "../utils/api";
 import type { Definition } from "../types";
-import { supabase } from "../supabase";
+import { supabase } from "../lib/supabase";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const DefinitionInterface = ({word, handler, bookmarkHandler} : {word: string, h
       toast(<span>To bookmark, please <Link className="link" to="/">login</Link>.</span>)
     }
 
-    bookmarkHandler(data.definitions, data.context);
+    bookmarkHandler(data.definitions, data.cultural);
   }
 
   return (

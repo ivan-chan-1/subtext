@@ -5,7 +5,7 @@ const Page = ({children}: {children: ReactNode}) => {
   return (
     <div className="min-h-screen px-25 flex flex-col">
       {children}
-      <Toaster />
+      <Toaster position="bottom-right" />
     </div>
   )
 }

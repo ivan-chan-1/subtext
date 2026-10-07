@@ -3,6 +3,9 @@ import Page from "../components/Page"
 import NavBar from "../components/NavBar";
 import YoutubeBookmarkCard from "../components/YoutubeBookmarkCard";
 import DefinitionCard from "../components/DefinitionCard";
+import { supabase } from "../lib/supabase";
+import { useQuery } from "@tanstack/react-query";
+import type { VocabData } from "../types";
 
 const definitions = [
   {
@@ -18,26 +21,47 @@ const videos = [
 ];
 
 const BookmarkPage = () => {
-  const { word } = useParams();
+  const { vocabId } = useParams();
+  console.log("HERRE")
+  console.log(vocabId)
+  const {
+    data,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ["getVocabDetails"], 
+    queryFn: async () => {
+      const { data, error } = await supabase.from("vocabulary").select("*").eq("id", vocabId).single<VocabData>();;
+      if (error) throw error;
+      return data;
+    },
+    refetchOnWindowFocus: false
+  })
+
+  if (!data) {
+    return;
+  }
+
+  
 
   return (
     <Page>
       <NavBar className="mt-15 mb-8" showMenu/>
       <div className="flex flex-col gap-4">
-        <h1 className="text-5xl">{word}</h1>
+        <h1 className="text-5xl">{data.vocab}</h1>
         <h2 className="text-lg uppercase font-light text-neutral-400 mt-8">Definitions</h2>
-        <div className="bg-base-100 p-4 rounded-lg border border-base-300">
-          {definitions.map((d, i) => {
+        <div className="flex flex-col bg-base-100 p-4 gap-4 rounded-lg border border-base-300">
+          {data.definitions.map((d, i) => {
             return (
-              <DefinitionCard key={`${word}-definition-${i}`} definition={d} />
+              <DefinitionCard key={`${data.vocab}-definition-${i}`} definition={d} />
             );
           })}
         </div>
         <h2 className="text-lg uppercase font-light text-neutral-400">Videos ({videos.length})</h2>
         <div className="flex flex-col gap-4">
-          {word && (videos.map((v) => {
+          {data && (videos.map((v) => {
             return (
-              <YoutubeBookmarkCard key={v} videoId={v} word={word} />
+              <YoutubeBookmarkCard key={v} videoId={v} word={data.vocab} />
             );
           }))}
         </div>

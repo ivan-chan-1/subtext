@@ -5,19 +5,19 @@ const WordCard = ({ details }: { details: WordDetails }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/bookmark/${details.word.toLowerCase()}`)
+    navigate(`/bookmark/${details.vocabId}`)
   }
   
-  const formatDate = (ts: string) => {
-    return new Date(ts).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    })
-  }
+  // const formatDate = (ts: string) => {
+  //   return new Date(ts).toLocaleDateString("en-GB", {
+  //     day: "2-digit",
+  //     month: "2-digit",
+  //     year: "numeric"
+  //   })
+  // }
 
   return (
-    <div className="card card-sm bg-base-100 border border-base-300 max-h-56" onClick={handleClick}>
+    <div className="card card-sm bg-base-100 border border-base-300" onClick={handleClick}>
       <div className="card-body flex flex-col gap-4">
         <h1 className="text-xl lowercase">{details.word}</h1>
         {/* Definitions */}
@@ -48,10 +48,6 @@ const WordCard = ({ details }: { details: WordDetails }) => {
             </svg>
             <p>{details.bookmarks}</p>
           </div>
-
-          <span className="text-neutral-500 uppercase">
-            Last Bookmarked: {formatDate(details.timestamp)}
-          </span>
         </div>
       </div>
     </div>

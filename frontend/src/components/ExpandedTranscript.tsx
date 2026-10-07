@@ -44,8 +44,6 @@ const ExpandedTranscript = ({vidId, currentTime, player} : {vidId: string, curre
         "p_user_id": data.user?.id
       }
 
-      console.log(bookmarkData)
-
       return await supabase.rpc("bookmark_vocab", bookmarkData);
     }
   });

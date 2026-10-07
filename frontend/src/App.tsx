@@ -24,7 +24,7 @@ function App() {
               <Route path="/load" element={<LoadingPage />} />
               <Route path="/transcript/:vidId" element={<TranscriptPage />} />
               <Route path="/transcript" element={<Navigate to="/" replace />} />
-              <Route path="/bookmark/:word" element={<ProtectedRoute><BookmarkPage /></ProtectedRoute>} />
+              <Route path="/bookmark/:vocabId" element={<ProtectedRoute><BookmarkPage /></ProtectedRoute>} />
               <Route path="/bookmark" element={<Navigate to="/" replace />} />
             </Routes>
           </BrowserRouter>

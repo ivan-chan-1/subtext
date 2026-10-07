@@ -11,14 +11,22 @@ const UserPage = () => {
     isLoading,
     isError
   } = useQuery({
-    queryKey: ["getAllBookmarks"], 
+    queryKey: ["getBookmarksOverview"], 
     queryFn: async () => {
-      const { data, error } = await supabase.from("bookmarks").select("*").eq("language", "en");
+      const { data, error } = await supabase.rpc("get_bookmarks_overview");
       if (error) throw error;
-      return data
+      return data;
+    },
+    select: (data) => {
+      return data.map((w) => ({
+        ...w,
+        vocabId: w.vocab_id,
+        definitions: w.definitions.map((d) => d.meaning)
+      }))
     },
     refetchOnWindowFocus: false
   })
+  console.log(data)
 
   return (
     <Page>

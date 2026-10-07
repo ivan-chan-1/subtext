@@ -23,13 +23,20 @@ export interface Definition {
 }
 
 export interface WordDetails {
+    vocabId: string;
     word: string;
     definitions: string[];
     bookmarks: number;
-    timestamp: string;
 }
 
 export interface LoginFormData {
     email: string;
     password: string;
+}
+
+export interface VocabData {
+    vocabId: string;
+    definitions: Definition[]
+    type: string;
+    vocab: string;
 }
